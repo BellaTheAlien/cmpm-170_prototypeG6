@@ -19,14 +19,17 @@ public class BotMovement : MonoBehaviour
         if (waypoints.Length == 0) return;
 
         Transform target = waypoints[currentIndex];
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, Random.Range(0.5f, 10f) * Time.deltaTime);
 
         // Rotate to face direction
         Vector2 dir = target.position - transform.position;
         if (dir != Vector2.zero)
-            transform.up = dir;
+            {
+                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, dir);
+                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * 5f);
+            }
 
         if (Vector2.Distance(transform.position, target.position) < 0.1f)
-            currentIndex = (currentIndex + 1) % waypoints.Length; 
+            currentIndex = Random.Range(0, waypoints.Length);
     }
 }
