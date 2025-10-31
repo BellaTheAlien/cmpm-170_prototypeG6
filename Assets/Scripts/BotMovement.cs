@@ -19,7 +19,7 @@ public class BotMovement : MonoBehaviour
         if (waypoints.Length == 0) return;
 
         Transform target = waypoints[currentIndex];
-        transform.position = Vector2.MoveTowards(transform.position, target.position, Random.Range(0.5f, 10f) * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
         // Rotate to face direction
         Vector2 dir = target.position - transform.position;
@@ -30,6 +30,7 @@ public class BotMovement : MonoBehaviour
             }
 
         if (Vector2.Distance(transform.position, target.position) < 0.1f)
-            currentIndex = Random.Range(0, waypoints.Length);
+            currentIndex = (currentIndex + 1) % waypoints.Length;
+        //Random.Range(0, waypoints.Length); changed it back to sequential movement for predictability 
     }
 }
