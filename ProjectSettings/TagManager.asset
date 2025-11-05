@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bots
   - Water
   - UI
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Walls
     uniqueID: 2579414167
+    locked: 0
+  - name: Key
+    uniqueID: 87267741
     locked: 0
   - name: Bots
     uniqueID: 600148073
